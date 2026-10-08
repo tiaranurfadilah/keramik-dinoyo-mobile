@@ -5,9 +5,11 @@ class AuthService {
   String? _registeredName;
   String? _registeredEmail;
   String? _registeredPassword;
+  String? _registeredPhone;
 
   String currentName = 'Pengunjung';
   String currentEmail = '';
+  String currentPhone = '';
 
   String get firstName {
     final parts = currentName.trim().split(RegExp(r'\s+'));
@@ -18,12 +20,31 @@ class AuthService {
     required String name,
     required String email,
     required String password,
+    required String phone,
   }) {
     _registeredName = name.trim();
     _registeredEmail = email.trim().toLowerCase();
     _registeredPassword = password;
+    _registeredPhone = phone.trim();
     currentName = _registeredName!;
     currentEmail = _registeredEmail!;
+    currentPhone = _registeredPhone!;
+  }
+
+  void updateProfile({
+    required String name,
+    required String email,
+    required String phone,
+  }) {
+    currentName = name.trim();
+    currentEmail = email.trim().toLowerCase();
+    currentPhone = phone.trim();
+
+    if (_registeredEmail != null) {
+      _registeredName = currentName;
+      _registeredEmail = currentEmail;
+      _registeredPhone = currentPhone;
+    }
   }
 
   /// Mengembalikan pesan error, atau null jika berhasil.
@@ -36,6 +57,7 @@ class AuthService {
       }
       currentName = _registeredName ?? 'Pengunjung';
       currentEmail = e;
+      currentPhone = _registeredPhone ?? '';
       return null;
     }
 
@@ -45,11 +67,13 @@ class AuthService {
         ? 'Pengunjung'
         : local[0].toUpperCase() + local.substring(1);
     currentEmail = e;
+    currentPhone = '';
     return null;
   }
 
   void logout() {
     currentName = 'Pengunjung';
     currentEmail = '';
+    currentPhone = '';
   }
 }

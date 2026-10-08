@@ -39,6 +39,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       name: _nameCtrl.text,
       email: _emailCtrl.text,
       password: _passCtrl.text,
+      phone: _phoneCtrl.text,
     );
 
     ScaffoldMessenger.of(context)
@@ -238,7 +239,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             if (state.hasError)
                               Padding(
-                                padding: const EdgeInsets.only(top: 6, left: 36),
+                                padding:
+                                    const EdgeInsets.only(top: 6, left: 36),
                                 child: Text(
                                   state.errorText!,
                                   style: AppText.sans(

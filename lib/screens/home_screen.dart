@@ -5,6 +5,7 @@ import '../data/dummy_data.dart';
 import '../services/auth_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common_widgets.dart';
+import 'product_detail_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   /// Dipanggil untuk pindah tab di bottom navigation (0 Home, 1 Jelajah, 2 Kegiatan, 3 Profil)
@@ -85,7 +86,8 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 4),
             Text(
               'Yuk, kenal lebih dekat dengan Kampung Keramik Dinoyo.',
-              style: AppText.sans(size: 15, color: AppColors.brown, height: 1.45),
+              style:
+                  AppText.sans(size: 15, color: AppColors.brown, height: 1.45),
             ),
             const SizedBox(height: 20),
             _buildHero(),
@@ -134,7 +136,8 @@ class HomeScreen extends StatelessWidget {
                 letterSpacing: 0.8,
               ),
             ),
-            Text('Home', style: AppText.sans(size: 22, weight: FontWeight.w800)),
+            Text('Home',
+                style: AppText.sans(size: 22, weight: FontWeight.w800)),
           ],
         ),
         const Spacer(),
@@ -171,7 +174,7 @@ class HomeScreen extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            const AssetPic('assets/images/hero.jpg'),
+            const AssetPic('assets/images/home.png'),
             Container(
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
@@ -210,7 +213,8 @@ class HomeScreen extends StatelessWidget {
                     'Kenali karya, pengrajin, dan pengalaman keramik.',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: AppText.sans(size: 14, color: Colors.white, height: 1.4),
+                    style: AppText.sans(
+                        size: 14, color: Colors.white, height: 1.4),
                   ),
                   const SizedBox(height: 14),
                   PrimaryButton(
@@ -302,7 +306,8 @@ class HomeScreen extends StatelessWidget {
   Widget _buildStoryCard(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(22),
-      onTap: () => _toast(context, 'Halaman cerita akan hadir di tahap berikutnya.'),
+      onTap: () =>
+          _toast(context, 'Halaman cerita akan hadir di tahap berikutnya.'),
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
@@ -314,7 +319,7 @@ class HomeScreen extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(14),
               child: const AssetPic(
-                'assets/images/story.jpg',
+                'assets/images/home2.png',
                 width: 84,
                 height: 104,
               ),
@@ -459,7 +464,8 @@ class HomeScreen extends StatelessWidget {
                       Expanded(
                         child: Text(
                           'Cari Keramik dengan AI',
-                          style: AppText.sans(size: 20, weight: FontWeight.w800),
+                          style:
+                              AppText.sans(size: 20, weight: FontWeight.w800),
                         ),
                       ),
                     ],
@@ -548,7 +554,8 @@ class HomeScreen extends StatelessWidget {
           Align(
             alignment: Alignment.centerRight,
             child: GestureDetector(
-              onTap: () => _toast(context, 'Halaman ulasan akan hadir di tahap berikutnya.'),
+              onTap: () => _toast(
+                  context, 'Halaman ulasan akan hadir di tahap berikutnya.'),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -664,7 +671,8 @@ class HomeScreen extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           'Kampung Dinoyo',
-                          style: AppText.sans(size: 13, weight: FontWeight.w600),
+                          style:
+                              AppText.sans(size: 13, weight: FontWeight.w600),
                         ),
                       ],
                     ),
@@ -777,15 +785,11 @@ class _ProductCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(20),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () {
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                content: Text('Detail ${product.name} akan hadir di tahap berikutnya.'),
-              ),
-            );
-        },
+        onTap: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => ProductDetailScreen(product: product),
+          ),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(

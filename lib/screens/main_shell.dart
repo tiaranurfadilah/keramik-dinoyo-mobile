@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../theme/app_theme.dart';
+import 'explore_screen.dart';
 import 'home_screen.dart';
 import 'placeholder_screens.dart';
 
@@ -20,11 +21,7 @@ class _MainShellState extends State<MainShell> {
   Widget build(BuildContext context) {
     final pages = <Widget>[
       HomeScreen(onNavigate: _go),
-      const PlaceholderScreen(
-        title: 'Jelajah',
-        description: 'Daftar karya dan toko lokal akan dibuat di tahap berikutnya.',
-        icon: Icons.explore_outlined,
-      ),
+      const ExploreScreen(),
       const PlaceholderScreen(
         title: 'Kegiatan',
         description: 'Workshop dan form pendaftaran akan dibuat di tahap berikutnya.',
